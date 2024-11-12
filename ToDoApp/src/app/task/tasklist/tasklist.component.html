@@ -1,17 +1,17 @@
-<div class="card-custom" *ngFor="let tarea of tareas">
-    <div class="card text-center">
+<div class="card-container">
+    <div class="card text-center" *ngFor="let tarea of tareas">
         <div class="card-header">
-          {{tarea.name}}
+            {{tarea.name}}
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{tarea.name}}</h5>
-          <p class="card-text">{{tarea.description}}</p>
-          <button class="btn btn-danger" (click)="deleteTarea(tarea.id)">Eliminar</button>
+            <h5 class="card-title">{{tarea.name}}</h5>
+            <p class="card-text">{{tarea.description}}</p>
+            <button class="btn btn-danger" (click)="deleteTarea(tarea.id)">Eliminar</button>
         </div>
         <div class="card-footer text-body-secondary">
-          {{tarea.date}}
+            {{tarea.date}}
         </div>
-      </div>
+        </div>
 </div>
 
   
