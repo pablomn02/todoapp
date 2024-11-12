@@ -10,7 +10,8 @@ import { TaskformComponent } from './task/taskform/taskform.component';
 
 const routes: Routes = [
   { path: 'inicio', component: TasklistComponent },
-  { path: 'tareas', component: TasklistComponent }
+  { path: 'tareas', component: TasklistComponent },
+  { path: 'crear-tarea', component: TaskformComponent },
 ];
 
 @NgModule({
