@@ -1,1 +1,55 @@
-
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="container mt-5 p-4 border rounded shadow">
+    <h2 class="text-center mb-4">Crear Tarea</h2>
+  
+    <!-- Campo Título -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Título</label>
+      <input 
+        id="name" 
+        type="text" 
+        formControlName="name" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': taskForm.get('name')?.invalid && taskForm.get('name')?.touched }" 
+        placeholder="Ingrese un título" 
+      />
+      <div *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched" class="invalid-feedback">
+        El título es obligatorio y debe tener al menos 3 caracteres.
+      </div>
+    </div>
+  
+    <!-- Campo Descripción -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea 
+        id="description" 
+        formControlName="description" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': taskForm.get('description')?.invalid && taskForm.get('description')?.touched }" 
+        rows="3" 
+        placeholder="Ingrese una descripción"
+      ></textarea>
+      <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched" class="invalid-feedback">
+        La descripción es obligatoria (máx. 200 caracteres).
+      </div>
+    </div>
+  
+    <!-- Campo Fecha de Vencimiento -->
+    <div class="mb-3">
+      <label for="date" class="form-label">Fecha de Vencimiento</label>
+      <input 
+        id="date" 
+        type="date" 
+        formControlName="date" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': taskForm.get('date')?.invalid && taskForm.get('date')?.touched }" 
+      />
+      <div *ngIf="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" class="invalid-feedback">
+        La fecha de vencimiento es obligatoria.
+      </div>
+    </div>
+  
+    <!-- Botón -->
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary w-100">Crear Tarea</button>
+    </div>
+  </form>

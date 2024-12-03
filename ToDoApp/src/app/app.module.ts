@@ -7,6 +7,7 @@ import { TasklistComponent } from './task/tasklist/tasklist.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TaskComponent } from './task/task.component';
 import { TaskformComponent } from './task/taskform/taskform.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'inicio', component: TasklistComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)  // Importa RouterModule con las rutas definidas
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

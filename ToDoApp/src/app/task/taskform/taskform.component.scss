@@ -1,0 +1,22 @@
+form {
+    background-color: #f8f9fa; /* Fondo claro */
+  }
+  
+  h2 {
+    color: #495057; /* Tono de gris */
+  }
+  
+  input,
+  textarea {
+    border-radius: 5px;
+  }
+  
+  button {
+    transition: background-color 0.3s ease;
+  }
+  
+  button:disabled {
+    background-color: #6c757d; /* Botón deshabilitado */
+    cursor: not-allowed;
+  }
+  

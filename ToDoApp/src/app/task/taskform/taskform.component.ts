@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Task } from 'src/app/shared/interfaces/task';
 import { TaskService } from 'src/app/shared/services/task.service';
 
 @Component({
@@ -8,23 +10,34 @@ import { TaskService } from 'src/app/shared/services/task.service';
   styleUrls: ['./taskform.component.scss']
 })
 export class TaskformComponent {
+  taskForm: FormGroup;
+  tasks: Task[] = []
+  private nextId: number = 1;
 
-  constructor(private service: TaskService){}
+  constructor(private formBuilder: FormBuilder){
+    this.taskForm = this.formBuilder.group({
+      name: ["", [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.maxLength(20)]],
+      priority: [1, [Validators.required, Validators.min(1), Validators.max(5)]],
+      date: ['', Validators.required],
+      completed: [false]
+    });
+  }
 
-  newTask = new FormGroup({
-    id: new FormControl( 0, [Validators.required]),
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    priority: new FormControl('', [Validators.required]),
-    date: new FormControl('', [Validators.required]),
-    completed: new FormControl(false)
-  });
-
-  onSubmit(){
-    if(this.newTask.valid){
-      // this.service.agregarTarea(this.newTask.value)
-      console.log("Nueva tarea añadida: ", this.newTask)
+  onSubmit() {
+    if (this.taskForm.valid) {
+      const newTask: Task = {
+        id: this.nextId++, // Genera el ID automáticamente
+        ...this.taskForm.value
+      };
+      this.tasks.push(newTask);
+      console.log('Tarea creada:', newTask);
+      this.taskForm.reset();
+    } else {
+      console.error('Formulario inválido');
     }
   }
+
+
 
 }
